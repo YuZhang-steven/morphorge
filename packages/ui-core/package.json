@@ -1,5 +1,5 @@
 {
-    "name": "@morphorge/ui-core",
+    "name": "@yuzhang-steven/ui-core",
     "version": "0.1.0",
     "private": false,
     "main": "./dist/index.js",
