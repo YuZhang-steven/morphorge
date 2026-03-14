@@ -1,6 +1,7 @@
 // Neumorph.tsx
 import * as React from "react";
 import { hexToRgba } from "../lib/hexToRgba";
+import { sizeToStyle } from "../lib/sizeToStyle";
 
 type Size =
     | number
@@ -66,8 +67,8 @@ export function NeumBlock<T extends React.ElementType = "div">({
 
     const shadowPrefix = inset ? "inset " : "";
     const boxShadow = [
-        `${shadowPrefix}${distance}px ${distance}px ${blurPx}px rgba(0,0,0,${darkA})`,
-        `${shadowPrefix}${-distance}px ${-distance}px ${blurPx}px rgba(255,255,255,${lightA})`,
+        `${shadowPrefix}${distance}px ${distance}px ${blurPx}px ${darkShadowColor}`,
+        `${shadowPrefix}${-distance}px ${-distance}px ${blurPx}px ${lightShadowColor}`,
     ].join(", ");
 
     const computedStyle: React.CSSProperties = {
@@ -90,9 +91,4 @@ export function NeumBlock<T extends React.ElementType = "div">({
 }
 
 
-function sizeToStyle(size?: Size): React.CSSProperties | undefined {
-    if (size == null) return undefined;
-    if (typeof size === "number") return { width: size, height: size };
-    if ("width" in size) return { width: size.width, height: size.height };
-    return { width: size.w, height: size.h };
-}
+

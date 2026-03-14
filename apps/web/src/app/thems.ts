@@ -24,3 +24,6 @@ export const NEUM_PALETTES = [
     { bg: '#c41f48', shadowDark: '#741228', shadowLight: '#f02858' }, // 3 crimson
     { bg: '#9e1f1f', shadowDark: '#5e1212', shadowLight: '#c42424' }, // 4 maroon
 ];
+
+// Minimum pixel heights for each NeumBlock cell (label sits below in doc flow)
+export const HEIGHT_MAP = { short: 220, medium: 280, tall: 380 };
