@@ -36,7 +36,8 @@ const getInitialSize = (): WindowSize => {
   };
 };
 
-export const useWindowSize = create<WindowSizeStore>((set) => ({
+
+export const useWindowSizeStore = create<WindowSizeStore>((set) => ({
   windowSize: getInitialSize(),
   setWindowSize: (size) => set({ windowSize: size }),
 }));
@@ -48,7 +49,7 @@ export const initializeWindowSizeListener = () => {
     const width = window.innerWidth;
     const height = window.innerHeight;
 
-    useWindowSize.setState({
+    useWindowSizeStore.setState({
       windowSize: {
         width,
         height,

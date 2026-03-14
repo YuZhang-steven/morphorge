@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from "react";
-import { initializeWindowSizeListener } from "../lib/store/useWindowSize";
+import { initializeWindowSizeListener } from "../lib/store/useWindowSizeStore";
 
 export default function HomePageInit() {
     useEffect(() => {
