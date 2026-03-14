@@ -5,7 +5,7 @@ import { NeumBlock } from "./NeumBlock";
 import { useWindowSizeStore } from "../lib/store/useWindowSizeStore";
 
 type GalleryProps = {
-    sideBarWidth: number;
+    sideBarWidth?: number;
 }
 
 export default function Gallery({ sideBarWidth = 56 }: GalleryProps) {
