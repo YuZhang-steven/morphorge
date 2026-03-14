@@ -1,5 +1,6 @@
 // Neumorph.tsx
 import * as React from "react";
+import { hexToRgba } from "../lib/hexToRgba";
 
 type Size =
     | number
@@ -26,6 +27,10 @@ export type NeumorphProps<T extends React.ElementType = "div"> = {
     size?: Size;
     /** allow passing/merging inline styles */
     style?: React.CSSProperties;
+    /** hex color for the dark shadow (default: black) */
+    shadowDark?: string;
+    /** hex color for the light/highlight shadow (default: white) */
+    shadowLight?: string;
 } & Omit<React.ComponentPropsWithoutRef<T>, "as" | "style" | "children" | "className">;
 
 
@@ -41,6 +46,8 @@ export function NeumBlock<T extends React.ElementType = "div">({
     inset = true,
     size,
     style,
+    shadowDark,
+    shadowLight,
     ...rest
 }: NeumorphProps<T>) {
     const Comp = (as ?? "div") as React.ElementType;
@@ -49,9 +56,12 @@ export function NeumBlock<T extends React.ElementType = "div">({
     const blurPx = blur ?? distance * 2;
 
     // intensity -> alpha values (tweak to taste)
-    const darkA = Math.max(0, Math.min(1, 0.22 * intensity));
-    const lightA = Math.max(0, Math.min(1, 0.85 * intensity));
-    // const lightA = 1
+    const darkA = Math.max(0, Math.min(1, 0.35 * intensity));
+    const lightA = Math.max(0, Math.min(1, 1.0 * intensity));
+
+    const darkShadowColor = shadowDark ? hexToRgba(shadowDark, darkA) : `rgba(0,0,0,${darkA})`;
+    const lightShadowColor = shadowLight ? hexToRgba(shadowLight, lightA) : `rgba(255,255,255,${lightA})`;
+
 
 
     const shadowPrefix = inset ? "inset " : "";
